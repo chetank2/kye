@@ -1,6 +1,5 @@
 import { Trash2, FileSpreadsheet } from 'lucide-react';
 import { Button } from '../ui/button';
-import { Badge } from '../ui/badge';
 import { useWorkspaceStore } from '../../store/useWorkspaceStore';
 
 export function FileList() {

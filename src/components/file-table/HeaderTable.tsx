@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
-import { Badge } from '../ui/badge';
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useWorkspaceStore } from '../../store/useWorkspaceStore';
 import { findCommonHeaders } from '../../libs/find-common-headers';
@@ -84,7 +83,7 @@ export function HeaderTable() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {uploadedFiles.map((file, i) => (
+                            {uploadedFiles.map((file) => (
                                 <TableRow key={file.fileId} className="odd:bg-muted/30 border-b-0 hover:bg-muted/50">
                                     <TableCell className="font-medium text-sm">{file.fileName}</TableCell>
                                     <TableCell>
