@@ -95,15 +95,15 @@ export function FileDropzone({ onFilesProcessed }: FileDropzoneProps) {
         <div className="space-y-4">
             <Card
                 className={cn(
-                    "border-2 border-dashed transition-all duration-200 cursor-pointer",
-                    isDragging && "border-primary bg-primary/5 scale-[1.02]",
-                    !isDragging && "border-border hover:border-primary/50"
+                    "border border-dashed border-neutral-300 dark:border-neutral-700 shadow-none bg-transparent transition-all duration-200 cursor-pointer group",
+                    isDragging && "border-primary bg-primary/5 scale-[1.01]",
+                    !isDragging && "hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-muted/20"
                 )}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
             >
-                <label className="flex flex-col items-center justify-center p-12 cursor-pointer">
+                <label className="flex flex-col items-center justify-center py-20 px-8 cursor-pointer">
                     <input
                         type="file"
                         multiple
@@ -113,41 +113,45 @@ export function FileDropzone({ onFilesProcessed }: FileDropzoneProps) {
                         disabled={isProcessing}
                     />
 
-                    <div className="flex flex-col items-center gap-4 text-center">
+                    <div className="flex flex-col items-center gap-6 text-center">
                         <div
                             className={cn(
-                                "rounded-full p-4 transition-colors",
-                                isDragging ? "bg-primary/10" : "bg-muted"
+                                "rounded-2xl p-4 transition-colors ring-1 ring-inset",
+                                isDragging
+                                    ? "bg-primary/10 ring-primary/20 text-primary"
+                                    : "bg-background ring-neutral-200 dark:ring-neutral-800 text-muted-foreground group-hover:text-foreground group-hover:ring-neutral-300 dark:group-hover:ring-neutral-700"
                             )}
                         >
                             {isProcessing ? (
-                                <FileSpreadsheet className="h-10 w-10 text-muted-foreground animate-pulse" />
+                                <FileSpreadsheet className="h-8 w-8 animate-pulse" />
                             ) : (
-                                <Upload
-                                    className={cn(
-                                        "h-10 w-10 transition-colors",
-                                        isDragging ? "text-primary" : "text-muted-foreground"
-                                    )}
-                                />
+                                <Upload className="h-8 w-8" />
                             )}
                         </div>
 
                         <div className="space-y-2">
-                            <h3 className="text-lg font-semibold">
+                            <h3 className="text-xl font-semibold tracking-tight">
                                 {isProcessing
                                     ? "Processing files..."
                                     : isDragging
                                         ? "Drop files here"
-                                        : "Upload Excel Files"}
+                                        : "Drop your Excel files"}
                             </h3>
-                            <p className="text-sm text-muted-foreground">
-                                Drag and drop .xlsx or .xls files here, or click to browse
+                            <p className="text-sm text-muted-foreground max-w-xs mx-auto">
+                                We will detect headers and validate automatically.
                             </p>
+                            {!isProcessing && !isDragging && (
+                                <div className="pt-2">
+                                    <button
+                                        onClick={(e) => { e.preventDefault(); /* TODO: Load sample files */ }}
+                                        className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
+                                    >
+                                        <span>No data?</span>
+                                        <span className="underline decoration-muted-foreground/50 hover:decoration-primary">Try our sample files</span>
+                                    </button>
+                                </div>
+                            )}
                         </div>
-
-                        <p className="text-xs text-muted-foreground">
-                            Upload multiple files to analyze common headers
-                        </p>
                     </div>
                 </label>
             </Card>

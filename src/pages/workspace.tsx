@@ -26,35 +26,41 @@ export function Workspace() {
             <Sidebar />
 
             {/* Main Content Area */}
-            <div className={cn("flex-1 min-w-0 overflow-y-auto transition-all duration-300", isChatOpen && "mr-[500px]")}>
-                <div className="container max-w-4xl mx-auto p-6 space-y-6">
+            <div className={cn(
+                "flex-1 min-w-0 overflow-y-auto transition-all duration-300 bg-background/50",
+                isChatOpen && "mr-[450px]"
+            )}>
+                <div className="h-full w-full p-8 lg:p-10 space-y-8">
                     {/* Header */}
-                    <div className="space-y-2">
-                        <h1 className="text-3xl font-bold tracking-tight">
+                    <div className="space-y-2 max-w-3xl">
+                        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
                             Upload Excel Files for Analysis
                         </h1>
-                        <p className="text-muted-foreground">
-                            Upload multiple Excel files to find common headers and analyze your data with AI
+                        <p className="text-sm text-muted-foreground max-w-2xl leading-relaxed">
+                            Upload multiple Excel files to find common headers and analyze your data with AI.
+                            We will detect headers and validate automatically.
                         </p>
                     </div>
 
-                    {/* File Upload Section */}
-                    <FileDropzone />
+                    <div className="max-w-5xl space-y-8">
+                        {/* File Upload Section */}
+                        <FileDropzone />
 
-                    {/* Uploaded Files List */}
-                    <FileList />
+                        {/* Uploaded Files List */}
+                        <FileList />
 
-                    {/* Header Detection Table */}
-                    <HeaderTable />
+                        {/* Header Detection Table */}
+                        <HeaderTable />
 
-                    {/* Header Mapping (shown when needed) */}
-                    <HeaderMapping />
+                        {/* Header Mapping (shown when needed) */}
+                        <HeaderMapping />
 
-                    {/* Alias Editor (shown when headers are mapped) */}
-                    <AliasEditor />
+                        {/* Alias Editor (shown when headers are mapped) */}
+                        <AliasEditor />
 
-                    {/* Analysis Trigger */}
-                    <AnalysisLoader />
+                        {/* Analysis Trigger */}
+                        <AnalysisLoader />
+                    </div>
                 </div>
             </div>
 
